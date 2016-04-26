@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>TwitchTV Streamers</title>
+    </head>
+    <body ng-app="twitchApp">
+		<div class=
+"container" ng-controller="twitchAppCtrl as tc">
+			<div class="header text-center">
+				<ul class="nav pull-right">
+					<li>All</li>
+					<li>Online</li>
+					<li>Offline</li>
+				</ul>
+				<h2>
+					Twitch Streamers
+				</h2>
+			</div>
+			<div>
+				<div class="col-xs-12 text-center" ng-repeat="streamer in tc.streamers">
+					Hello {{streamer}},
+				</div>
+				<button>Click</button>
+			</div>
+		</div>
+	</body>
+</html>
