@@ -39,10 +39,16 @@
     		</h2>
     	</div>
     	<div>
-    		<div class="col-xs-12 text-center" ng-repeat="streamer in tc.streamers">
-    			Hello {{streamer}},
-    		</div>
-    		<button>Click</button>
+            <div class="col-xs-12">
+                <ul class="col-xs-12 card" ng-repeat="streamer in tc.data">
+                    <li>
+                        <h3>
+                            <a href="{{streamer.url}}">{{streamer.name}}</a>
+                        </h3>
+                        <p>{{streamer.status}}</p
+                    </li>
+                </ul>
+            </div>
     	</div>
 
       <div class="footer">
