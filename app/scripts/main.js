@@ -30,17 +30,26 @@
 
 		self.streamers = streamers;
 
-		self.lookUp = function(){
-			twitchDataService.lookUp();
-			// $q.all(twitchDataService.lookUp()).then(function(res){
-			// 	console.log('result', res);
-			// });
-		};
-		// self.results = function(){
-		// 	twitchDataService.lookUp().then(function(res){
-		// 		console.log(res);
-		// 	})
-		// }
+        twitchDataService.lookUp().then(function(res){
+			console.log('res.data', res);
+			return res.map(function(response){
+				if (!response.error){
+					return {
+						name: response.name,
+						url: response.url,
+						status: response.status,
+						banner: response.profile_banner
+					};
+				} else {
+					return {
+						message: response.message
+					};
+				}
+			});
+		}).then(function(data){
+			console.log(data);
+			self.data = data;
+		});
 
 	}
 
@@ -49,7 +58,7 @@
 	angular
 		.module('twitchApp', [])
 		.constant('endpoint', 'https://api.twitch.tv/kraken/channels/')
-		.constant('streamers', ['freecodecamp', 'storbeck', 'terakilobyte', 'habathcx', 'RobotCaleb', 'thomasballinger', 'noobs2ninjas', 'beohoff', 'brunofin', 'comster404', 'test_channel', 'cretetion', 'sheevergaming', 'TR7K', 'OgamingSC2', 'ESL_SC2'])
+		.constant('streamers', ['brunofin', 'comster404', 'freecodecamp', 'storbeck', 'terakilobyte', 'habathcx', 'RobotCaleb', 'thomasballinger', 'noobs2ninjas', 'beohoff', 'test_channel', 'cretetion', 'sheevergaming', 'TR7K', 'OgamingSC2', 'ESL_SC2'])
 		.controller('twitchAppCtrl', twitchAppCtrl)
 		.service('twitchDataService', twitchDataService);
 })();
