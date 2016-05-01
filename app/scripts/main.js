@@ -11,10 +11,33 @@
 					return endpoint;
 				});
 
+
 				return $q.all(endpoints.map(function(endpoint){
 						return $http.jsonp(endpoint).then(function(response){
-							let data = response.data;
-							return data;
+							let data = response.data,
+								streamer = {},
+								streamerData = [];
+
+							if (data.stream === null){
+								streamer.status = 'offline',
+								streamer.url = data['_links'].channel;
+								streamerData.push(streamer);
+								console.log('streamer is offline');
+							} else if (data.stream === undefined || data.error){
+								streamer.status = 'account does not exist';
+								streamerData.push(streamer);
+								console.log('streamer does not exist or account has been deleted');
+							} else if (data.stream){
+								streamer.name = data.display_name,
+								streamer.url = data['_links'].channel,
+								streamer.status = 'online',
+								streamer.logo = '',
+								streamer.excerpt = data.status;
+								streamerData.push(streamer);
+								//self.streamerInfo.push(data.stream['_links'].self);
+								//console.log('streamer is online', data.stream['_links'].self);
+							}
+							return streamerData;
 						});
 				}));
 			}
@@ -47,22 +70,15 @@
 
 		self.streamers = streamers;
 
-		console.log(channelEndpoint);
-
-		twitchDataService.lookUp(channelEndpoint).then(function(res){
-			console.log(res);
-		});
 
 		twitchDataService.lookUp(streamEndpoint).then(function(res){
+			console.log(res);
 			res.forEach(function(data){
 				console.log(data);
-				if (data.stream === null){
-					console.log('streamer is offline');
-				} else if (data.stream === undefined){
-					console.log('streamer does not exist or account has been deleted');
-				} else {
-					console.log('streamer is online', data.stream['_links'].self);
-				}
+			});
+		}).then(function(){
+			twitchDataService.lookUp(channelEndpoint).then(function(res){
+				console.log('should have full streamer object', res);
 			});
 		});
 
