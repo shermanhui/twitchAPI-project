@@ -4,6 +4,26 @@ $icon-font-path: '../fonts/';
 @import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 // endbower
 
+.card {
+    text-align: center;
+
+    li {
+        list-style-type: none;
+        background: #ccc;
+        border: 1px solid #eee;
+        padding-bottom: 5px;
+        margin-bottom: 5px;
+    }
+
+    h3 {
+        text-transform: uppercase;
+    }
+
+    p {
+        font-size: 1.2em;
+    }
+}
+
 .browserupgrade {
   margin: 0.2em 0;
   background: #ccc;

@@ -28,22 +28,20 @@
     <![endif]-->
 
     <div class="container" ng-controller="twitchAppCtrl as tc">
-        <div class="header text-center">
+        <div class="text-center">
     		<!-- <ul class="nav pull-right">
     			<li>All</li>
     			<li>Online</li>
     			<li>Offline</li>
     		</ul> -->
-    		<h2>
-    			Twitch Streamers
-    		</h2>
+    		<h2>Twitch Streamers</h2>
     	</div>
     	<div>
-            <ul class="col-xs-12 card">
-                <div class="card" ng-repeat="streamer in tc.data">
+            <ul class="col-xs-12">
+                <div class="card" ng-repeat="streamer in tc.streamerData" ng-cloak>
                     <li>
                         <h3>
-                            <a href="{{streamer.url}}">{{streamer.name}}</a>
+                            <a href="{{streamer.url}}" ng-cloak>{{streamer.name}}</a>
                         </h3>
                         <p>{{streamer.status}}</p>
                     </li>
@@ -52,7 +50,7 @@
     	</div>
 
       <div class="footer">
-        <p>♥ from the Yeoman team</p>
+        <p>♥ FCC Project</p>
       </div>
     </div>
 
