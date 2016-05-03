@@ -36,9 +36,21 @@
     		</ul> -->
     		<h2>Twitch Streamers</h2>
     	</div>
+        <div class="col-xs-12">
+            <div class="search-bar">
+                <div class="input-group">
+                    <input class="form-control input-lg" type="text" ng-model="query" placeholder="search streamers">
+                    <span class="input-group-btn">
+                        <button class="btn btn-info btn-lg">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
     	<div>
             <ul class="col-xs-12">
-                <div class="card" ng-repeat="streamer in tc.streamerData" ng-cloak>
+                <div class="card" ng-repeat="streamer in tc.streamerData | filter:query" ng-cloak>
                     <li>
                         <h3>
                             <a href="{{streamer.url}}" ng-cloak>{{streamer.name}}</a>
