@@ -87,7 +87,7 @@
 				} else {
 					self.streamer.name = 'streamer online';
 					self.streamer.status = 'online';
-					self.streamer.url = data['_links'].self;
+					self.streamer.url = data.stream.channel.url;
 				}
 				self.streamerData.push(self.streamer);
 			});
