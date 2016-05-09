@@ -104,28 +104,6 @@
 		// 	});
 		// });
 
-
-        // twitchDataService.lookUp().then(function(res){
-		// 	console.log('res.data', res);
-		// 	return res.map(function(response){
-		// 		if (!response.error){
-		// 			return {
-		// 				name: response.name,
-		// 				url: response.url,
-		// 				status: response.status,
-		// 				banner: response.profile_banner
-		// 			};
-		// 		} else {
-		// 			return {
-		// 				message: response.message
-		// 			};
-		// 		}
-		// 	});
-		// }).then(function(data){
-		// 	console.log(data);
-		// 	self.data = data;
-		// });
-
 	}
 
 	twitchAppCtrl.$inject = ['$scope', '$q', 'twitchDataService', 'endpoint', 'streamers'];
