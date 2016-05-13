@@ -1,5 +1,7 @@
 # twitchAPI-project
 
+*project on hold
+
 ## Expectations
 
 This project requires the use of Twitch's API endpoint to display a list of streamers.
